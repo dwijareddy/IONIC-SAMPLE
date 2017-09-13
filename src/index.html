@@ -9,11 +9,19 @@
 
   <link rel="icon" type="image/x-icon" href="assets/icon/favicon.ico">
   <link rel="manifest" href="manifest.json">
+
+  <link rel="stylesheet" type="text/css" href="../../assets/slick/slick.css"/>
+  <link rel="stylesheet" type="text/css" href="../../assets/slick/slick-theme.css"/>
+  
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script src="../../assets/slick/slick.js"></script>
   <meta name="theme-color" content="#4e8ef7">
 
   <!-- cordova.js required for cordova apps -->
   <script src="cordova.js"></script>
-
+  
+  <script src="assets/instafeed/instafeed.min.js"></script>
+  
   <!-- un-comment this code to enable service worker
   <script>
     if ('serviceWorker' in navigator) {
@@ -26,11 +34,41 @@
   <link href="build/main.css" rel="stylesheet">
 
 </head>
-<body>
-
+<body> 
   <!-- Ionic's root component and where the app will load -->
   <ion-app></ion-app>
+  <div id="instafeed" class="instafeed"></div>
+  
+  <script type="text/javascript">
+  var imgs = [];
 
+  var feed = new Instafeed({
+        get: 'tagged',
+        tagName: 'awesome',
+        accessToken: '22302097.74c7af7.c860e07aa99647e99814d90b02101984',
+        limit: 15,
+        url: 'https://api.instagram.com/v1/media/{media-id}/comments?access_token=22302097.74c7af7.c860e07aa99647e99814d90b02101984',
+        //template: '<a href="{{link}}" target="_blank"><img src="{{image}}"/></a>',
+        template: '<div><a href="{{link}}"><img src="{{image}}"/></a><br/><label><b>Tags</b>: {{model.tags}}</label><br/><label><b>Likes: </b>{{model.likes.count}}</label></br><label><b>Comments: </b>{{model.comments.count}}</label></div>',
+        target: 'instafeed',
+        resolution: 'standard_resolution',
+        success: function(data) {
+          console.log(data.data);
+        },
+        after: function() {
+          $('#instafeed').slick({
+            speed: 400,
+            slidesToShow: 1,
+            autoplay: true,
+            dots: true,
+        });
+          console.log("After function");
+        }
+    });
+
+  feed.run();
+</script>     
+        
   <!-- The polyfills js is generated during the build process -->
   <script src="build/polyfills.js"></script>
 
@@ -40,6 +78,6 @@
 
   <!-- The main bundle js is generated during the build process -->
   <script src="build/main.js"></script>
-
+  
 </body>
 </html>

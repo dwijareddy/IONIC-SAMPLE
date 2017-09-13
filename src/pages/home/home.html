@@ -4,7 +4,8 @@
   </ion-navbar>
 </ion-header>
 
-<ion-content padding>
+<!-- Default ion-content -->
+<!-- <ion-content padding>
   <h2>Welcome to Ionic!</h2>
   <p>
     This starter project comes with simple tabs-based layout for apps
@@ -14,4 +15,28 @@
     Take a look at the <code>src/pages/</code> directory to add or change tabs,
     update any existing page or create new pages.
   </p>
+</ion-content> -->
+
+<!-- Simple way to slideshow images on local ion-content -->
+<!-- <ion-content>
+  <ion-slides autoplay="5000" loop="true" speed="3000">
+    <ion-slide >
+        <img src="../../assets/images/chi1.jpg">
+      </ion-slide>
+    <ion-slide >
+      <img src="../../assets/images/chi2.jpg">
+    </ion-slide>
+    <ion-slide >
+      <img src="../../assets/images/chi3.jpg">
+    </ion-slide>
+  </ion-slides>
+</ion-content> -->
+
+<!-- Dynamically slideshow images ion-content that are declared in home.ts-->
+<ion-content>
+      <!-- <ion-slides autoplay="5000" loop="true" speed="3000">
+       <ion-slide *ngFor="let slide of slideData">
+        <img src="{{slide.image}}" />
+      </ion-slide>
+    </ion-slides> -->
 </ion-content>
